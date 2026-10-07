@@ -1,4 +1,4 @@
-"""Rutherford scattering simulation and inverse-problem helpers."""
+# Rutherford scattering simulation and inverse-problem helpers
 
 import numpy as np
 
