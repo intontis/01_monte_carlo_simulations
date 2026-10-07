@@ -1,6 +1,6 @@
 # ⚛️ Rutherford Scattering — Forward and Inverse Problem
 
-Simulating alpha particles scattering off a gold nucleus with Monte Carlo methods — 
+Simulating alpha particles scattering off a gold nucleus with Monte Carlo methods 
 and then running the experiment backwards: recovering an unknown element's atomic 
 number Z from nothing but noisy measured angles.
 
@@ -64,8 +64,8 @@ the angle is never chosen, it is the *outcome*.
 
 - The experiment is repeated **500 times** and every recovered Z is collected
 - The estimates are centered on the true Z (mean ≈ 47.0) with a spread of σ ≈ 0.8–0.9
-- The red curve is a normal distribution **fitted** to the results (mean and std taken 
-  from the data) — not predicted from theory
+- The red curve is a normal distribution **fitted** to the results, (mean and std taken 
+  from the data) not predicted from theory
 - One experiment is typically within ±1 of the true Z about 90–95% of the time
 - Numbers move by a few percent between runs, because the calibration curve is itself 
   a simulation
@@ -82,29 +82,11 @@ the angle is never chosen, it is the *outcome*.
 - The typical deflection in this setup is only ≈ 6°, so 10° of noise is larger than 
   the signal itself — the method still works, with a visibly wider spread
 
-## 🧠 Physics Concepts Demonstrated
-
-- **Rutherford scattering** — deflection angle from the Coulomb force of a point nucleus
-- **Monte Carlo sampling** — random impact parameters, uniform over the beam's area
-- **Validation against theory** — simulated counts checked against an exact analytic result
-- **Inverse problems** — inferring a hidden property (Z) from indirect, noisy measurements
-- **Simulation-based estimation** — calibrating an estimator by simulating the experiment itself
-- **Statistical uncertainty** — the spread of repeated estimates quantifies how far 
-  a single measurement can be trusted
-
-## 💡 Key Takeaways
-
-- The forward model reproduces an exact analytic prediction within random fluctuation
-- An honest inverse problem may only use what a detector can measure — using the true 
-  impact parameters would give the right answer for any noise level, and prove nothing
-- Reporting the **spread** of the estimate matters as much as the estimate itself
-- Noise comparable to the typical deflection limits how precisely Z can be recovered
-
 ## 🧪 Model Assumptions
 
 - Point nucleus, infinitely heavy target (no recoil), non-relativistic, single scattering
 - No electron screening and no energy loss in the foil
-- Beam radius b_max is a toy choice (a / b_max ≈ 0.04) — scattering is far stronger than 
+- Beam radius b_max is a toy choice (a / b_max ≈ 0.04), scattering is far stronger than 
   in a real foil, so large-angle events are visible with a 10⁵ particle simulation
 - Detector noise is modeled as Gaussian on the measured angle, clipped to the physical range
 
@@ -118,12 +100,23 @@ The simulation and estimator live in a module, `scattering.py`, covered by 8 pyt
 - **Theory check** — the fraction of particles beyond 90° matches (a / b_max)² within 4 std
 - **Inverse problem** — Z is recovered within ±2 at 1° noise for Z = 30, 47, 79 and 100
 
-## 📁 Code Structure
+## 🧠 Physics Concepts Demonstrated
 
-- `scattering.py` — simulation and estimator functions
-- `notebooks/02_particle_scattering.ipynb` — forward problem, inverse problem, plots
-- `tests/test_scattering.py` — pytest tests
-- `results/` — saved figures
+- **Rutherford scattering** — deflection angle from the Coulomb force of a point nucleus
+- **Monte Carlo sampling** — random impact parameters, uniform over the beam's area
+- **Validation against theory** — simulated counts checked against an exact analytic result
+- **Inverse problems** — inferring a hidden property (Z) from indirect, noisy measurements
+- **Simulation-based estimation** — calibrating an estimator by simulating the experiment itself
+- **Statistical uncertainty** — the spread of repeated estimates quantifies how far 
+  a single measurement can be trusted
+  
+## 💡 Key Takeaways
+
+- The forward model reproduces an exact analytic prediction within random fluctuation
+- An honest inverse problem may only use what a detector can measure — using the true 
+  impact parameters would give the right answer for any noise level, and prove nothing
+- Reporting the **spread** of the estimate matters as much as the estimate itself
+- Noise comparable to the typical deflection limits how precisely Z can be recovered
 
 ## 🌍 Real World Applications
 

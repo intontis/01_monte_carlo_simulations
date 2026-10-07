@@ -1,13 +1,12 @@
 # 🎯 Monte Carlo Pi Estimation
 
-Estimating the value of π using random sampling — one of the most 
-elegant applications of Monte Carlo methods in computational physics.
+Estimating the value of π using random sampling.
 
 ![Live Pi Estimation](results/01_pi_estimation.gif)
 
 ## 🔬 Background
 
-The idea is beautifully simple: if you randomly throw darts at a square 
+The idea is simple: if you randomly throw darts at a square 
 containing a circle, the ratio of darts landing inside the circle to the 
 total number of darts approximates π:
 
@@ -18,7 +17,7 @@ the surrounding square is 4. The ratio of areas equals the ratio of
 random points landing in each region.
 
 A point (x, y) is inside the circle when **x² + y² ≤ 1**, so the code 
-only compares the squared distance with 1 — no square root needed.
+only compares the squared distance with 1, no square root needed.
 
 ## 📊 Results
 
@@ -36,7 +35,7 @@ only compares the squared distance with 1 — no square root needed.
 
 - 100 points added per frame, 10,000 in total
 - The running estimate is shown in the title of every frame
-- Early frames jump around, later frames settle near π — but never exactly on it
+- Early frames jump around, later frames settle near π (never exactly on it)
 
 ### Distribution of the Estimator
 
@@ -44,9 +43,9 @@ only compares the squared distance with 1 — no square root needed.
 
 - The experiment is repeated **5,000 times** with 10,000 points each
 - Every run gives a slightly different π, and together they form a bell curve
-- The red curve is **not fitted** — it is computed from theory only:
+- The red curve is **not fitted** → it is computed from theory only:
   **σ = √(π(4 − π) / N) ≈ 0.0164** for N = 10,000
-- The histogram is centered on π → the estimator is **unbiased**
+- The histogram is centered on π → the estimator is unbiased
 - Its width matches σ → theory and simulation agree
 
 ### Convergence Analysis
@@ -56,7 +55,7 @@ only compares the squared distance with 1 — no square root needed.
 - 100 independent runs for each sample size, averaged
 - Dashed line = theory: **mean error = σ · √(2/π) ∝ 1/√N**
 - On a log-log plot, 1/√N is a straight line with slope −1/2
-- Measured points wobble slightly around the line — that is sampling noise from using only 100 runs per size
+- Measured points wobble slightly around the line (that is sampling noise from using only 100 runs per size)
 
 | Sample Size | Expected Mean Error |
 |---|---|
@@ -78,7 +77,7 @@ only compares the squared distance with 1 — no square root needed.
 
 - 10× more accuracy costs **100× more points**
 - Six correct digits would need on the order of 10¹² points, so plain Monte Carlo is a poor way to compute π itself
-- Its strength is that the 1/√N rate does **not** depend on the number of dimensions — which is why it is used for high-dimensional problems where grid methods become unaffordable
+- Its strength is that the 1/√N rate does **not** depend on the number of dimensions, which is why it is used for high-dimensional problems where grid methods become unaffordable
 
 ## 🌍 Real World Applications
 
