@@ -3,9 +3,10 @@ import pytest
 
 from scattering import B_MAX, a_of, build_median_curve, estimate_Z, simulate_angles
 
+# 5 MeV alpha on gold
+
 
 def test_a_of_scales_correctly():
-    # 5 MeV alpha on gold
     assert a_of(79) == pytest.approx(22.752)
     assert a_of(2 * 40) == pytest.approx(2 * a_of(40)
                                          )           # proportional to Z
@@ -25,9 +26,10 @@ def test_same_seed_gives_same_angles():
     second = simulate_angles(47, 1_000, 5.0, np.random.default_rng(123))
     np.testing.assert_array_equal(first, second)
 
+# without noise, a particle scatters beyond 90° exactly when b < a
+
 
 def test_fraction_beyond_90_degrees_matches_theory():
-    # without noise, a particle scatters beyond 90° exactly when b < a
     n = 200_000
     theta = simulate_angles(79, n, noise_deg=0.0, rng=np.random.default_rng(0))
     p = (a_of(79) / B_MAX) ** 2
@@ -37,10 +39,11 @@ def test_fraction_beyond_90_degrees_matches_theory():
     # 4 std: fails by chance ~1 in 16,000
     assert abs(observed - expected) < 4 * sigma
 
+# built once and shared by the tests below (it is the slow part)
+
 
 @pytest.fixture(scope="module")
 def curve_1deg():
-    # built once and shared by the tests below (it is the slow part)
     return build_median_curve(1.0, np.random.default_rng(1))
 
 
