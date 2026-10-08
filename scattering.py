@@ -19,8 +19,8 @@ def a_of(Z, z_alpha=Z_ALPHA, energy=E_ALPHA):
 
 
 def simulate_angles(Z, n, noise_deg, rng, b_max=B_MAX):
-    b = b_max * np.sqrt(rng.uniform(0, 1, n)
-                        )        # uniform over the beam's area
+    # uniform over the beam's area
+    b = b_max * np.sqrt(rng.uniform(0, 1, n))
     theta = 2 * np.arctan(a_of(Z) / b)
     theta = theta + rng.normal(0, np.radians(noise_deg), n)
     return np.clip(theta, 0.001, np.pi - 0.001)
